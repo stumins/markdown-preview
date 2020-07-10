@@ -4,10 +4,19 @@ import DOMPurify from 'dompurify';
 import {hot} from "react-hot-loader";
 import "./MarkdownPreview.css";
 
+const Button = (props) => {
+    return(
+        <div id="btn-frame">
+            <label for="toggle-linebr">Markdown linebreak on newline: {props.linebreaks ? "ON" : "OFF"}</label>
+            <input type="checkbox" id="toggle-linebr" value={props.linebreaks} onClick={props.onClick}></input>
+        </div>
+    );
+}
+
 const Editor = (props) => {
     return(
         <div id="editor-frame">
-            <textarea id="editor">{props.input}</textarea>
+            <textarea id="editor" value={props.input} onChange={props.onChange}></textarea>
         </div>
     );
 }
@@ -25,10 +34,28 @@ class MarkdownPreview extends React.Component {
         super(props);
         this.state = {
             input: props.default,
+            linebreaks: false
         };
+        this.createMarkup = this.createMarkup.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
-    updateEditor() {
 
+    handleButtonClick() {
+        this.setState({
+            linebreaks: !this.state.linebreaks
+        });
+
+        // Allow Markdown linebreak on newline
+        marked.setOptions({
+            breaks: this.state.linebreaks,
+        });
+    }
+
+    handleInputChange(event) {
+        this.setState({
+            input: event.target.value
+        });
     }
     createMarkup(rawMarkdown) {
         // Must sanitize HTML before rendering!
@@ -37,7 +64,8 @@ class MarkdownPreview extends React.Component {
     render() {
         return (
             <div id="mainframe">
-                <Editor input={this.state.input} />
+                <Button linebreaks={this.state.linebreaks} onClick={this.handleButtonClick} />
+                <Editor input={this.state.input} onChange={this.handleInputChange} />
                 <Preview renderMarkdown={this.createMarkup(this.state.input)}/>
             </div>
             
