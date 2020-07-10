@@ -45,11 +45,6 @@ class MarkdownPreview extends React.Component {
         this.setState({
             linebreaks: !this.state.linebreaks
         });
-
-        // Allow Markdown linebreak on newline
-        marked.setOptions({
-            breaks: this.state.linebreaks,
-        });
     }
 
     handleInputChange(event) {
@@ -62,6 +57,11 @@ class MarkdownPreview extends React.Component {
         return {__html: DOMPurify.sanitize(marked(rawMarkdown))};
     }
     render() {
+        // Allow Markdown linebreak on newline
+        marked.setOptions({
+            breaks: this.state.linebreaks,
+        });
+        
         return (
             <div id="mainframe">
                 <Button linebreaks={this.state.linebreaks} onClick={this.handleButtonClick} />
