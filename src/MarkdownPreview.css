@@ -1,8 +1,126 @@
-#mainframe {
-    display: flex
+body {
+    height: 100vh;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: salmon;
 }
 
-#helloworld {
-    margin: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
+#root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+::-webkit-scrollbar {
+    width: 9px;
   }
+  
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+#btn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Bungee', cursive;
+    padding: 1rem;
+    height: auto;
+    background-color: lightgreen;
+    border-top-left-radius : 10px;
+    border-top-right-radius : 10px;
+    border-bottom: black solid 2px;
+}
+
+#main-frame {
+    top: 10;
+    background-color: snow;
+    max-width: 1200px;
+    width: 80%;
+    min-height: 80vh;
+    height: auto;
+    border-radius: 10px;
+    border: black solid 2px;
+}
+
+#content-frame {
+    display: flex;
+}
+
+#editor-h, #preview-h {
+    margin-top: 0;
+    font-family: 'Bungee', cursive;
+}
+
+.md-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    max-height: 80vh;
+    border-radius: 5px;
+    margin: 0.75rem 1rem;
+    padding: 1rem;
+    font-family: 'Arvo', serif;
+}
+
+.data-tile {
+    width: 100%;
+    min-height: 90%;
+    height: auto;
+    overflow-y: auto;
+    border-radius: 5px;
+    box-shadow: inset 0 0 3px;
+    background-color: snow;
+    padding: 0.6em;
+    border: 1px solid black;
+}
+
+#editor {
+    font-size: 0.85em;
+    font-family: 'Work Sans', sans-serif;
+    resize: none;
+    outline: none;
+}
+
+#preview {
+    height: auto;
+    font-family: 'Work Sans', sans-serif;
+}
+
+@media (min-width: 900px) {
+    #editor-frame {
+        margin-right: 0.75rem;
+    }
+
+    #preview-frame {
+        margin-left: 0.75rem;
+    }
+}
+
+@media (max-width: 900px) {
+    
+    #content-frame {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .md-frame {
+        width: 85%;
+        height: 28vh;
+        border-radius: 5px;
+        margin: 0.75rem 1rem;
+        padding: 1rem;
+    }
+}

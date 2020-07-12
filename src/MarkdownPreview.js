@@ -5,26 +5,28 @@ import {hot} from "react-hot-loader";
 import "./MarkdownPreview.css";
 
 const Button = (props) => {
+    let bgColor = props.linebreaks ? "lightgreen" : "lightskyblue";
     return(
-        <div id="btn-frame">
-            <label for="toggle-linebr">Markdown linebreak on newline: {props.linebreaks ? "ON" : "OFF"}</label>
-            <input type="checkbox" id="toggle-linebr" value={props.linebreaks} onClick={props.onClick}></input>
+        <div id="btn" style={{backgroundColor: bgColor}} value={props.linebreaks} onClick={props.onClick}>
+            Markdown linebreak on editor newline: {props.linebreaks ? "ON" : "OFF"}
         </div>
     );
 }
 
 const Editor = (props) => {
     return(
-        <div id="editor-frame">
-            <textarea id="editor" value={props.input} onChange={props.onChange}></textarea>
+        <div id="editor-frame" className="md-frame">
+            <h2 id="editor-h">Editor</h2>
+            <textarea id="editor" className="data-tile" value={props.input} onChange={props.onChange}></textarea>
         </div>
     );
 }
 
 const Preview = (props) => {
     return(
-        <div id="preview-frame">
-            <div id="preview" dangerouslySetInnerHTML={props.renderMarkdown}></div>
+        <div id="preview-frame" className="md-frame">
+            <h2 id="preview-h">Preview</h2>
+            <div id="preview" className="data-tile" dangerouslySetInnerHTML={props.renderMarkdown}></div>
         </div>
     );
 }
@@ -63,10 +65,12 @@ class MarkdownPreview extends React.Component {
         });
         
         return (
-            <div id="mainframe">
+            <div id="main-frame">
                 <Button linebreaks={this.state.linebreaks} onClick={this.handleButtonClick} />
-                <Editor input={this.state.input} onChange={this.handleInputChange} />
-                <Preview renderMarkdown={this.createMarkup(this.state.input)}/>
+                <div id="content-frame">
+                    <Editor input={this.state.input} onChange={this.handleInputChange} />
+                    <Preview renderMarkdown={this.createMarkup(this.state.input)}/>
+                </div>
             </div>
             
         );
