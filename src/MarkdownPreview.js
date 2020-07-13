@@ -44,9 +44,9 @@ class MarkdownPreview extends React.Component {
     }
 
     handleButtonClick() {
-        this.setState({
-            linebreaks: !this.state.linebreaks
-        });
+        this.setState((state, props) => ({
+            linebreaks: !state.linebreaks
+        }));
     }
 
     handleInputChange(event) {
