@@ -25,7 +25,7 @@
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
     "eslint": "^7.4.0",
-    "lodash": ">=4.17.19",
+    "lodash": ">=4.17.21",
     "style-loader": "^0.23.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
